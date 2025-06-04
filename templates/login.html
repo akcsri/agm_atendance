@@ -2,13 +2,15 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>ログイン - 投資家出欠管理</title>
+    <title>ログイン</title>
 </head>
 <body>
     <h1>ログイン</h1>
-    <form method="POST">
-        <label>ユーザー名: <input type="text" name="username" required></label><br>
-        <label>パスワード: <input type="password" name="password" required></label><br>
+    <form method="POST" action="{{ url_for('login') }}">
+        <label for="username">ユーザー名:</label>
+        <input type="text" id="username" name="username" required><br>
+        <label for="password">パスワード:</label>
+        <input type="password" id="password" name="password" required><br>
         <button type="submit">ログイン</button>
     </form>
 </body>

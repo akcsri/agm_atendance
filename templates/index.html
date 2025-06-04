@@ -2,49 +2,11 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>出欠一覧</title>
+    <title>ホーム</title>
 </head>
 <body>
-    <h1>出欠一覧</h1>
-    <p>ようこそ、{{ current_user.username }} さん</p>
+    <h1>ようこそ、{{ username }} さん！</h1>
+    <p>これはログイン後のホームページです。</p>
     <a href="{{ url_for('logout') }}">ログアウト</a>
-
-    <h2>出欠登録</h2>
-    <form action="{{ url_for('register') }}" method="post">
-        <label>出欠:
-            <select name="status" onchange="toggleDetails(this)">
-                <option value="出席">出席</option>
-                <option value="欠席">欠席</option>
-            </select>
-        </label><br>
-        <div id="details">
-            <label>肩書: <input type="text" name="title"></label><br>
-            <label>氏名: <input type="text" name="name"></label><br>
-        </div>
-        <button type="submit">登録</button>
-    </form>
-
-    <h2>登録済み一覧</h2>
-    <ul>
-        {% for record in data %}
-            <li>
-                {{ record.status }}
-                {% if record.status == '出席' %}
-                    - {{ record.title }} {{ record.name }}
-                {% endif %}
-                [<a href="{{ url_for('update', id=record.id) }}">更新</a>]
-            </li>
-        {% endfor %}
-    </ul>
-
-    <script>
-        function toggleDetails(select) {
-            const details = document.getElementById('details');
-            details.style.display = select.value === '出席' ? 'block' : 'none';
-        }
-        window.onload = () => {
-            toggleDetails(document.querySelector('select[name=\"status\"]'));
-        };
-    </script>
 </body>
 </html>

@@ -38,7 +38,17 @@ def login():
 @app.route('/')
 @login_required
 def index():
-    return f'ようこそ、{current_user.username} さん！'
+    return render_template('index.html', username=current_user.username)
 
-# ア__':
+# ログアウトルート
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
+
+# アプリ起動時にDB作成
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)
