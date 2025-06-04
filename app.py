@@ -34,10 +34,15 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        user and check_password_hash(user.password_hash, password):
+        
+        # ここでユーザーをデータベースなどから取得する必要があります
+        user = get_user_by_username(username)  # 仮の関数名です
+
+        if user and check_password_hash(user.password_hash, password):
             login_user(user)
             return redirect(url_for('index'))
         return 'ログイン失敗'
+    
     return render_template('login.html')
 
 @app.route('/logout')
