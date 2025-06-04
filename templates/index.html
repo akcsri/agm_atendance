@@ -2,13 +2,15 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>投資家集会 出欠登録</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>出欠一覧</title>
 </head>
 <body>
-    <h1>投資家集会 出欠登録</h1>
-    <form action="/register" method="post">
-        <label>投資家名: <input type="text" name="investor" required></label><br>
+    <h1>出欠一覧</h1>
+    <p>ようこそ、{{ current_user.username }} さん</p>
+    <a href="{{ url_for('logout') }}">ログアウト</a>
+
+    <h2>出欠登録</h2>
+    <form action="{{ url_for('register') }}" method="post">
         <label>出欠:
             <select name="status" onchange="toggleDetails(this)">
                 <option value="出席">出席</option>
@@ -24,13 +26,13 @@
 
     <h2>登録済み一覧</h2>
     <ul>
-        {% for investor, info in data.items() %}
+        {% for record in data %}
             <li>
-                {{ investor }} - {{ info.status }}
-                {% if info.status == '出席' %}
-                    （{{ info.title }} {{ info.name }}）
+                {{ record.status }}
+                {% if record.status == '出席' %}
+                    - {{ record.title }} {{ record.name }}
                 {% endif %}
-                [<a href="{{ url_for('update', investor=investor) }}">更新</a>]
+                [<a href="{{ url_for('update', id=record.id) }}">更新</a>]
             </li>
         {% endfor %}
     </ul>
