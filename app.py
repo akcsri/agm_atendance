@@ -40,5 +40,5 @@ def login():
 def index():
     return f'ようこそ、{current_user.username} さん！'
 
-# アプリ起動時にDB作成
-if=True)
+# ア__':
+    app.run(debug=True)
