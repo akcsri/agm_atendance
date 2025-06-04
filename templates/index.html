@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>投資家集会 出欠登録</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>投資家集会 出欠登録</h1>
+    <form action="/register" method="post">
+        <label>投資家名: <input type="text" name="investor" required></label><br>
+        <label>出欠:
+            <select name="status" onchange="toggleDetails(this)">
+                <option value="出席">出席</option>
+                <option value="欠席">欠席</option>
+            </select>
+        </label><br>
+        <div id="details">
+            <label>肩書: <input type="text" name="title"></label><br>
+            <label>氏名: <input type="text" name="name"></label><br>
+        </div>
+        <button type="submit">登録</button>
+    </form>
+
+    <h2>登録済み一覧</h2>
+    <ul>
+        {% for investor, info in data.items() %}
+            <li>
+                {{ investor }} - {{ info.status }}
+                {% if info.status == '出席' %}
+                    （{{ info.title }} {{ info.name }}）
+                {% endif %}
+                [<a href="{{ url_for('update', investor=investor) }}">更新</a>]
+            </li>
+        {% endfor %}
+    </ul>
+
+    <script>
+        function toggleDetails(select) {
+            const details = document.getElementById('details');
+            details.style.display = select.value === '出席' ? 'block' : 'none';
+        }
+        window.onload = () => {
+            toggleDetails(document.querySelector('select[name=\"status\"]'));
+        };
+    </script>
+</body>
+</html>
