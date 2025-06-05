@@ -75,8 +75,9 @@ def user_dashboard():
 def admin_dashboard():
     if current_user.role != 'admin':
         return redirect(url_for('index'))
-    users = User.query.all()
-    return render_template('admin_dashboard.html', users=users)
+    participants = Participant.query.all()
+    return render_template('admin_dashboard.html', participants=participants)
+
 
 # アプリ起動時にDB作成（ローカル開発用）
 if __name__ == '__main__':

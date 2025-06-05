@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>管理者ダッシュボード</title>
+  <title>管理者ダッシュボード</title>
 </head>
 <body>
-    <h1>管理者ページ</h1>
-    <h2>登録ユーザー一覧</h2>
-    <ul>
-        {% for user in users %}
-            <li>{{ user.username }} - {{ user.role }}</li>
-        {% endfor %}
-    </ul>
-    <a href="{{ url_for('logout') }}">ログアウト</a>
+  <h1>管理者ページ</h1>
+
+  <h2>参加者一覧</h2>
+  <ul>
+    {% for p in participants %}
+      <li>{{ p.position }} - {{ p.name }} - {{ p.status }}</li>
+    {% endfor %}
+  </ul>
+
+  <a href="{{ url_for('logout') }}">ログアウト</a>
 </body>
 </html>
