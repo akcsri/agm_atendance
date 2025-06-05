@@ -29,10 +29,7 @@ def login():
         user = get_user_by_username(username)
         if user and check_password_hash(user.password_hash, password):
             login_user(user)
-            if user.role == 'admin':
-                return redirect(url_for('admin_dashboard'))
-            else:
-                return redirect(url_for('attendance'))
+            return redirect(url_for('index'))
         return 'ログイン失敗'
     return render_template('login.html')
 
@@ -40,33 +37,7 @@ def login():
 @app.route('/')
 @login_required
 def index():
-    if current_user.role == 'admin':
-        return redirect(url_for('admin_dashboard'))
-    else:
-        return redirect(url_for('user_dashboard'))
-
-@app.route('/admin')
-@login_required
-def admin_dashboard():
-    if current_user.role != 'admin':
-        return redirect(url_for('index'))
-    users = User.query.all()
-    return render_template('admin_dashboard.html', users=users)
-
-@app.route('/user', methods=['GET', 'POST'])
-@login_required
-def user_dashboard():
-    if request.method == 'POST':
-        position = request.form['position']
-        name = request.form['name']
-        status = request.form['status']
-        new_participant = Participant(position=position, name=name, status=status)
-        db.session.add(new_participant)
-        db.session.commit()
-        return redirect(url_for('user_dashboard'))
-
-    participants = Participant.query.all()
-    return render_template('user_dashboard.html', participants=participants)
+    return render_template('index.html', username=current_user.username)
 
 # ✅ 修正済み：ログアウトルート
 @app.route('/logout')
