@@ -18,12 +18,24 @@
         <button type="submit">追加</button>
     </form>
 
-    <h2>参加者一覧</h2>
-    <ul>
-        {% for p in participants %}
-            <li>{{ p.position }} - {{ p.name }} - {{ p.status }}</li>
-        {% endfor %}
-    </ul>
+<h2>参加者一覧</h2>
+<ul>
+  {% for p in participants %}
+    <li>
+      {{ p.position }} - {{ p.name }}
+      <form method="POST" action="{{ url_for('update_participant', participant_id=p.id) }}" style="display:inline;">
+        <select name="status">
+          <option value="出席" {% if p.status == '出席' %}selected{% endif %}>出席</option>
+          <option value="欠席" {% if p.status == '欠席' %}selected{% endif %}>欠席</option>
+        </select>
+        <button type="submit">更新</button>
+      </form>
+      <form method="POST" action="{{ url_for('delete_participant', participant_id=p.id) }}" style="display:inline;">
+        <button type="submit" onclick="return confirm('本当に削除しますか？');">削除</button>
+      </form>
+    </li>
+  {% endfor %}
+</ul>
 
     <a href="{{ url_for('logout') }}">ログアウト</a>
 </body>
