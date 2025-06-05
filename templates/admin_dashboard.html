@@ -9,9 +9,13 @@
   <h2>参加者一覧</h2>
   <ul>
     {% for p in participants %}
-      <li>{{ p.position }} - {{ p.name }} - {{ p.status }}</li>
+      <li>
+        {{ p.user.username }} - {{ p.position }} - {{ p.name }} - {{ p.status }}
+      </li>
     {% endfor %}
   </ul>
+
+  <h3>出席者の合計人数: {{ present_count }}</h3>
 
   <a href="{{ url_for('logout') }}">ログアウト</a>
 </body>
