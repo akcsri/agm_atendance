@@ -64,7 +64,7 @@ def user_dashboard():
             db.session.add(participant)
 
         db.session.commit()
-        return redirect(url_for('attendance'))
+        return redirect(url_for('user_dashboard'))
 
     participants = Participant.query.all()
     return render_template('attendance.html', username=current_user.username, participants=participants)
@@ -75,9 +75,8 @@ def user_dashboard():
 def admin_dashboard():
     if current_user.role != 'admin':
         return redirect(url_for('index'))
-    # attendances = Attendance.query.all()  # モデルが未定義のためコメントアウト
-    # return render_template('admin_dashboard.html', attendances=attendances)
-    return "管理者ページ（未実装）"
+    users = User.query.all()
+    return render_template('admin_dashboard.html', users=users)
 
 # アプリ起動時にDB作成（ローカル開発用）
 if __name__ == '__main__':
