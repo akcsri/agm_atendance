@@ -15,3 +15,6 @@ class Participant(db.Model):
     name = db.Column(db.String(100))
     status = db.Column(db.String(100))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))  # 所有者ユーザー
+
+def get_user_by_username(username):
+    return User.query.filter_by(username=username).first()
