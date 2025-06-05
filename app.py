@@ -66,7 +66,7 @@ def user_dashboard():
         return redirect(url_for('user_dashboard'))
 
     participants = Participant.query.filter_by(user_id=current_user.id).all()
-    return render_template('user_dashboard 1.html', username=current_user.username, participants=participants)
+    return render_template('user_dashboard.html', username=current_user.username, participants=participants)
 
 @app.route('/update/<int:participant_id>', methods=['POST'])
 @login_required
