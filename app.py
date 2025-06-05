@@ -40,8 +40,7 @@ def index():
     return render_template('index.html', username=current_user.username)
 
 # ログアウトルート
-@app.route('/logout')
-@login(url_for('login'))
+@app_for('login'))
 
 # 出席管理ページ
 @app.route('/attendance', methods=['GET', 'POST'])
@@ -76,7 +75,7 @@ def admin_dashboard():
     # return render_template('admin_dashboard.html', attendances=attendances)
     return "管理者ページ（未実装）"
 
-# アプリ起動時にDB作成
+# アプリ起動時にDB作成（ローカル開発用）
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
