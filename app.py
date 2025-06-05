@@ -55,19 +55,18 @@ def user_dashboard():
         name = request.form.get('name')
         status = request.form.get('status')
 
-        participant = Participant.query.filter_by(name=name).first()
+        participant = Participant.query.filter_by(name=name, user_id=current_user.id).first()
         if participant:
             participant.position = position
             participant.status = status
         else:
-            participant = Participant(position=position, name=name, status=status)
+            participant = Participant(position=position, name=name, status=status, user_id=current_user.id)
             db.session.add(participant)
-
         db.session.commit()
         return redirect(url_for('user_dashboard'))
 
-    participants = Participant.query.all()
-    return render_template('attendance.html', username=current_user.username, participants=participants)
+    participants = Participant.query.filter_by(user_id=current_user.id).all()
+    return render_template('user_dashboard 1.html', username=current_user.username, participants=participants)
 
 @app.route('/update/<int:participant_id>', methods=['POST'])
 @login_required
