@@ -94,9 +94,10 @@ def delete_participant(participant_id):
 def admin_dashboard():
     if current_user.role != 'admin':
         return redirect(url_for('index'))
-    participants = Participant.query.all()
-    return render_template('admin_dashboard.html', participants=participants)
 
+    participants = Participant.query.all()
+    present_count = Participant.query.filter_by(status='出席').count()  # ✅ 出席者数をカウント
+    return render_template('admin_dashboard.html', participants=participants, present_count=present_count)
 
 # アプリ起動時にDB作成（ローカル開発用）
 if __name__ == '__main__':
