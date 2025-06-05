@@ -1,28 +1,14 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>管理者ダッシュボード</title>
+    <title>Admin Dashboard</title>
 </head>
 <body>
-    <h1>出欠記録一覧</h1>
-    <table border="1">
-        <tr>
-            <th>氏名</th>
-            <th>肩書</th>
-            <th>出欠</th>
-            <th>記録者</th>
-        </tr>
-        {% for record in attendances %}
-        <tr>
-            <td>{{ record.name }}</td>
-            <td>{{ record.title }}</td>
-            <td>{{ record.attendance_status }}</td>
-            <td>{{ record.user.username }}</td>
-        </tr>
+    <h1>登録ユーザー一覧</h1>
+    <ul>
+        {% for user in users %}
+            <li>{{ user.username }} - {{ user.role }}</li>
         {% endfor %}
-    </table>
-    <br>
-    <a href="{{ url_for('logout') }}">ログアウト</a>
+    </ul>
 </body>
 </html>

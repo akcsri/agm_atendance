@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>出席管理</title>
+    <title>User Dashboard</title>
 </head>
 <body>
-    <h1>{{ username }} さんの出席管理</h1>
+    <h1>参加者一覧と登録</h1>
 
     <form method="POST">
         <label>役職: <input type="text" name="position" required></label><br>
@@ -15,16 +15,14 @@
                 <option value="欠席">欠席</option>
             </select>
         </label><br>
-        <button type="submit">登録 / 更新</button>
+        <button type="submit">追加</button>
     </form>
 
-    <h2>参加者一覧</h2>
+    <h2>登録済み参加者</h2>
     <ul>
         {% for p in participants %}
             <li>{{ p.position }} - {{ p.name }} - {{ p.status }}</li>
         {% endfor %}
     </ul>
-
-    <a href="{{ url_for('logout') }}">ログアウト</a>
 </body>
 </html>
