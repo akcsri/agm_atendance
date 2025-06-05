@@ -52,3 +52,12 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()
     app.run(debug=True)
+
+@app.route('/admin')
+@login_required
+def admin_dashboard():
+    if current_user.role != 'admin':
+        return redirect(url_for('dashboard'))
+    
+    attendances = Attendance.query.all()
+    return render_template('admin_dashboard.html', attendances=attendances)
