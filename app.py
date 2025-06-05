@@ -39,8 +39,12 @@ def login():
 def index():
     return render_template('index.html', username=current_user.username)
 
-# ログアウトルート
-@app_for('login'))
+# ✅ 修正済み：ログアウトルート
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
 
 # 出席管理ページ
 @app.route('/attendance', methods=['GET', 'POST'])
