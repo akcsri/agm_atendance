@@ -5,8 +5,6 @@ from werkzeug.security import check_password_hash
 from models import db, User, get_user_by_username, Participant
 
 app = Flask(__name__)
-with app.app_context():
-    db.create_all()
 app.config['SECRET_KEY'] = 'your_secret_key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
