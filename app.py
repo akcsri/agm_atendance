@@ -69,6 +69,22 @@ def user_dashboard():
     participants = Participant.query.all()
     return render_template('attendance.html', username=current_user.username, participants=participants)
 
+@app.route('/update/<int:participant_id>', methods=['POST'])
+@login_required
+def update_participant(participant_id):
+    participant = Participant.query.get_or_404(participant_id)
+    participant.status = request.form['status']
+    db.session.commit()
+    return redirect(url_for('user_dashboard'))
+
+@app.route('/delete/<int:participant_id>', methods=['POST'])
+@login_required
+def delete_participant(participant_id):
+    participant = Participant.query.get_or_404(participant_id)
+    db.session.delete(participant)
+    db.session.commit()
+    return redirect(url_for('user_dashboard'))
+
 # 管理者用ダッシュボード（未使用モデル Attendance に注意）
 @app.route('/admin')
 @login_required
