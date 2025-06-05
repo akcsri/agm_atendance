@@ -47,9 +47,9 @@ def logout():
     return redirect(url_for('login'))
 
 # 出席管理ページ
-@app.route('/attendance', methods=['GET', 'POST'])
+@app.route('/attendance', methods=['GET', 'POST'], endpoint='user_dashboard')
 @login_required
-def attendance():
+def user_dashboard():
     if request.method == 'POST':
         position = request.form.get('position')
         name = request.form.get('name')
