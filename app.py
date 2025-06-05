@@ -29,9 +29,13 @@ def login():
         user = get_user_by_username(username)
         if user and check_password_hash(user.password_hash, password):
             login_user(user)
-            return redirect(url_for('index'))
+            if user.role == 'admin':
+                return redirect(url_for('admin_dashboard'))
+            else:
+                return redirect(url_for('attendance'))
         return 'ログイン失敗'
     return render_template('login.html')
+
 
 # ログイン後のトップページ
 @app.route('/')
