@@ -7,39 +7,37 @@
     <h1>{{ current_user.username }} 様</h1>
 
     <form method="POST">
-        <label>役職: <input type="text" name="position" required></label><br>
-        <label>氏名: <input type="text" name="name" required></label><br>
-<label>メールアドレス (Email Address): <input type="email" name="email" required></label><br>
-<label>ご質問・ご要望など (Questions or Requests): <textarea name="questions"></textarea></label><br>
+        <label>役職: <input type="text" name="position" required></label><td>
+        <label>氏名: <input type="text" name="name" required></label><td>
+<label>メールアドレス (Email Address): <input type="email" name="email" required></label><td>
+<label>ご質問・ご要望など (Questions or Requests): <textarea name="questions"></textarea></label><td>
         <label>出欠: 
             <select name="status">
                 <option value="出席">出席</option>
                 <option value="欠席">欠席</option>
             </select>
-        </label><br>
+        </label><td>
         <button type="submit">追加</button>
     </form>
 
 <h2>参加者一覧</h2>
-<ul>
+<table>
   {% for p in participants %}
-    <li>
-      {{ p.position }} - {{ p.name }}
-<br>メールアドレス: {{ p.email }}
-<br>ご質問・ご要望など: {{ p.questions }}
+    <tr>
+      {{ p.position }} - {{ p.name }} - {{ p.email }} - {{ p.questions }}
       <form method="POST" action="{{ url_for('update_participant', participant_id=p.id) }}" style="display:inline;">
         <select name="status">
           <option value="出席" {% if p.status == '出席' %}selected{% endif %}>出席</option>
           <option value="欠席" {% if p.status == '欠席' %}selected{% endif %}>欠席</option>
         </select>
-        <button type="submit">更新</button>
+        <td><button type="submit">更新</button></td>
       </form>
       <form method="POST" action="{{ url_for('delete_participant', participant_id=p.id) }}" style="display:inline;">
-        <button type="submit" onclick="return confirm('本当に削除しますか？');">削除</button>
+        <td><button type="submit" onclick="return confirm('本当に削除しますか？');">削除</button></td>
       </form>
-    </li>
+    </tr>
   {% endfor %}
-</ul>
+</table>
 
     <a href="{{ url_for('logout') }}">ログアウト</a>
 </body>
