@@ -24,6 +24,8 @@ def load_user(user_id):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
+        email = request.form.get('email')
+        questions = request.form.get('questions')
         username = request.form['username']
         password = request.form['password']
         user = get_user_by_username(username)
@@ -55,6 +57,8 @@ def logout():
 @login_required
 def user_dashboard():
     if request.method == 'POST':
+        email = request.form.get('email')
+        questions = request.form.get('questions')
         position = request.form.get('position')
         name = request.form.get('name')
         status = request.form.get('status')
@@ -62,9 +66,13 @@ def user_dashboard():
         participant = Participant.query.filter_by(name=name, user_id=current_user.id).first()
         if participant:
             participant.position = position
+            participant.email = email
+            participant.questions = questions
             participant.status = status
         else:
-            participant = Participant(position=position, name=name, status=status, user_id=current_user.id)
+            participant = Participant(
+                email=email,
+                questions=questions,position=position, name=name, status=status, user_id=current_user.id)
             db.session.add(participant)
         db.session.commit()
         return redirect(url_for('user_dashboard'))

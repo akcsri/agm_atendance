@@ -14,6 +14,8 @@ class User(db.Model, UserMixin):
     participants = db.relationship('Participant', backref='user', lazy=True)
 
 class Participant(db.Model):
+    email = db.Column(db.String(120))
+    questions = db.Column(db.Text)
     id = db.Column(db.Integer, primary_key=True)
     position = db.Column(db.String(100))
     name = db.Column(db.String(100))
