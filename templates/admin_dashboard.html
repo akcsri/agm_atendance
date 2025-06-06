@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>管理者ダッシュボード</title>
+  <title>管理者ダッシュボード (Admin Dashboard)</title>
 </head>
 <body>
-  <h1>管理者ページ</h1>
+  <h1>管理者ページ (Admin Page)</h1>
 
-  <h2>参加者一覧</h2>
+  <h2>参加者一覧 (Participant List)</h2>
   <ul>
     {% for p in participants %}
       <li>
@@ -15,8 +15,8 @@
     {% endfor %}
   </ul>
 
-  <h3>出席者の合計人数: {{ present_count }}</h3>
+  <h3>出席 (Present)者の合計人数 (Total Present Participants): {{ present_count }}</h3>
 
-  <a href="{{ url_for('logout') }}">ログアウト</a>
+  <a href="{{ url_for('logout') }}">ログアウト (Logout)</a>
 </body>
 </html>
