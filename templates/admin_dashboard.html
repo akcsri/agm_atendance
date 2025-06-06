@@ -10,13 +10,13 @@
   <ul>
     {% for p in participants %}
       <li>
-        {{ p.user.username }} - {{ p.position }} - {{ p.name }} - {{ p.status }}
+        {{ p.user.username }} - {{ p.position }} - {{ p.name }}<br>メールアドレス: {{ p.email }}<br>ご質問・ご要望など: {{ p.questions }} - {{ p.status }}
       </li>
     {% endfor %}
   </ul>
 
   <h3>出席者の合計人数: {{ present_count }}</h3>
-<label>メールアドレス: <input type="email" name="email" required></label><br><label>ご質問・ご要望など: <textarea name="questions"></textarea></label><br>
+
   <a href="{{ url_for('logout') }}">ログアウト</a>
 </body>
 </html>
