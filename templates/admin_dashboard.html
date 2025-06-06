@@ -10,7 +10,7 @@
   <ul>
     {% for p in participants %}
       <li>
-        {{ p.user.username }} - {{ p.position }} - {{ p.name }}<br>メールアドレス: {{ p.email }}<br>ご質問・ご要望など: {{ p.questions }} - {{ p.status }}
+        {{ p.user.username }} - {{ p.position }} - {{ p.name }}- {{ p.status }} - {{ p.email }} - {{ p.questions }} 
       </li>
     {% endfor %}
   </ul>
