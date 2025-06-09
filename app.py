@@ -1,3 +1,6 @@
+# Updated Flask app code with UTF-8 BOM added to the CSV output in the download_csv route
+
+app_code = """
 from flask import Flask, request, redirect, url_for, render_template, Response
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
@@ -119,8 +122,8 @@ def download_csv():
 
     participants = Participant.query.all()
 
-    # Create CSV in memory
     output = io.StringIO()
+    output.write('\ufeff')  # ✅ UTF-8 BOM を追加
     writer = csv.writer(output)
     writer.writerow(['名前', 'メール', '質問', '役職', 'ステータス'])
 
@@ -136,3 +139,11 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()
     app.run(debug=True)
+"""
+
+# Save the updated code to 'app 7.py'
+with open('app 7.py', 'w') as file:
+    file.write(app_code)
+
+print("The updated 'app 7.py' file has been created successfully.")
+
