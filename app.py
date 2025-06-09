@@ -108,42 +108,6 @@ def admin_dashboard():
     return render_template('admin_dashboard.html', participants=participants, present_count=present_count)
 
 # アプリ起動時にDB作成（ローカル開発用）
-
-from flask import Response
-import csv
-import io
-
-@app.route('/download_csv')
-@login_required
-def download_csv():
-    if current_user.role != 'admin':
-        return redirect(url_for('index'))
-
-    output = io.StringIO()
-    writer = csv.writer(output)
-
-    # ヘッダー行
-    writer.writerow(["Username", "Position", "Name", "Status", "Email", "Questions"])
-
-    # データ行
-    for p in Participant.query.all():
-        writer.writerow([
-            p.user.username,
-            p.position,
-            p.name,
-            p.status,
-            p.email,
-            p.questions or ""
-        ])
-
-    output.seek(0)
-    return Response(
-        output,
-        mimetype="text/csv",
-        headers={"Content-Disposition": "attachment;filename=participants.csv"}
-    )
-
-
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
