@@ -1,44 +1,42 @@
 <!DOCTYPE html>
+
 <html>
 <head>
-    <title>ユーザーダッシュボード (User Dashboard)</title>
+<title>ユーザーダッシュボード</title>
 </head>
-<body>
-    <h1>{{ current_user.username }} 様</h1>
-
-    <form method="POST">
-        <label>役職 (Position): <input type="text" name="position" required></label><br>
-        <label>氏名 (Name): <input type="text" name="name" required></label><br>
-<label>メールアドレス (Email Address): <input type="email" name="email" required></label><br>
-<label>ご質問・ご要望など (Questions or Requests): <textarea name="questions"></textarea></label><br>
-        <label>出欠 (Attendance): 
+<body><img alt="Logo" src="logo.png" style="position: absolute; top: 10px; left: 10px;"/>
+<h1>{{ current_user.username }} 様</h1>
+<form method="POST">
+<label style="display: block; text-align: left;">役職: <input name="position" required="" type="text"/></label><br/>
+<label style="display: block; text-align: left;">氏名: <input name="name" required="" type="text"/></label><br/>
+<label style="display: block; text-align: left;">メールアドレス (Email Address): <input name="email" required="" type="email"/></label><br/>
+<label style="display: block; text-align: left;">ご質問・ご要望など (Questions or Requests): <textarea name="questions"></textarea></label><br/>
+<label style="display: block; text-align: left;">出欠: 
             <select name="status">
-                <option value="出席 (Present)">出席 (Present)</option>
-                <option value="欠席 (Absent)">欠席 (Absent)</option>
-            </select>
-        </label><br>
-        <button type="submit">追加 (Add)</button>
-    </form>
-
-<h2>参加者一覧 (Participant List)</h2>
+<option value="出席">出席</option>
+<option value="欠席">欠席</option>
+</select>
+</label><br/>
+<button type="submit">追加</button>
+</form>
+<h2>参加者一覧</h2>
 <ul>
   {% for p in participants %}
     <li>
       {{ p.position }} - {{ p.name }} - {{ p.email }} - {{ p.questions }}
-      <form method="POST" action="{{ url_for('update_participant', participant_id=p.id) }}" style="display:inline;">
-        <select name="status">
-          <option value="出席 (Present)" {% if p.status == '出席 (Present)' %}selected{% endif %}>出席 (Present)</option>
-          <option value="欠席 (Absent)" {% if p.status == '欠席 (Absent)' %}selected{% endif %}>欠席 (Absent)</option>
-        </select>
-        <button type="submit">更新 (Update)</button>
-      </form>
-      <form method="POST" action="{{ url_for('delete_participant', participant_id=p.id) }}" style="display:inline;">
-        <button type="submit" onclick="return confirm('本当に削除 (Delete)しますか？');">削除 (Delete)</button>
-      </form>
-    </li>
+      <form action="{{ url_for('update_participant', participant_id=p.id) }}" method="POST" style="display:inline;">
+<select name="status">
+<option %}="" %}selected{%="" endif="" if="" p.status="出席" value="出席" {%="">出席</option>
+<option %}="" %}selected{%="" endif="" if="" p.status="欠席" value="欠席" {%="">欠席</option>
+</select>
+<button type="submit">更新</button>
+</form>
+<form action="{{ url_for('delete_participant', participant_id=p.id) }}" method="POST" style="display:inline;">
+<button onclick="return confirm('本当に削除しますか？');" type="submit">削除</button>
+</form>
+</li>
   {% endfor %}
 </ul>
-
-    <a href="{{ url_for('logout') }}">ログアウト</a>
+<a href="{{ url_for('logout') }}">ログアウト</a>
 </body>
 </html>
