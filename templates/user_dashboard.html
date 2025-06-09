@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ユーザーダッシュボード</title>
+    <title>ユーザーダッシュボード (User Dashboard)</title>
 </head>
 <body>
     <h1>{{ current_user.username }} 様</h1>
 
     <form method="POST">
-        <label>役職: <input type="text" name="position" required></label><br>
-        <label>氏名: <input type="text" name="name" required></label><br>
-<label>メールアドレス (Email Address): <input type="email" name="email" required></label><br>
-<label>ご質問・ご要望など (Questions or Requests): <textarea name="questions"></textarea></label><br>
-        <label>出欠: 
+        <label>役職 (Position): <input type="text" name="position" required></label><br>
+        <label>氏名 (Name): <input type="text" name="name" required></label><br>
+<label>メールアドレス (Email Address) (Email Address): <input type="email" name="email" required></label><br>
+<label>ご質問・ご要望など (Questions or Requests) (Questions or Requests): <textarea name="questions"></textarea></label><br>
+        <label>出欠 (Attendance): 
             <select name="status">
-                <option value="出席">出席</option>
-                <option value="欠席">欠席</option>
+                <option value="出席 (Present)">出席 (Present)</option>
+                <option value="欠席 (Absent)">欠席 (Absent)</option>
             </select>
         </label><br>
-        <button type="submit">追加</button>
+        <button type="submit">追加 (Add)</button>
     </form>
 
-<h2>参加者一覧</h2>
+<h2>参加者一覧 (Participant List)</h2>
 <ul>
   {% for p in participants %}
     <li>
       {{ p.position }} - {{ p.name }} - {{ p.email }} - {{ p.questions }}
       <form method="POST" action="{{ url_for('update_participant', participant_id=p.id) }}" style="display:inline;">
         <select name="status">
-          <option value="出席" {% if p.status == '出席' %}selected{% endif %}>出席</option>
-          <option value="欠席" {% if p.status == '欠席' %}selected{% endif %}>欠席</option>
+          <option value="出席 (Present)" {% if p.status == '出席 (Present)' %}selected{% endif %}>出席 (Present)</option>
+          <option value="欠席 (Absent)" {% if p.status == '欠席 (Absent)' %}selected{% endif %}>欠席 (Absent)</option>
         </select>
-        <button type="submit">更新</button>
+        <button type="submit">更新 (Update)</button>
       </form>
       <form method="POST" action="{{ url_for('delete_participant', participant_id=p.id) }}" style="display:inline;">
-        <button type="submit" onclick="return confirm('本当に削除しますか？');">削除</button>
+        <button type="submit" onclick="return confirm('本当に削除 (Delete)しますか？');">削除 (Delete)</button>
       </form>
     </li>
   {% endfor %}
