@@ -112,3 +112,27 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()
     app.run(debug=True)
+
+from flask import Response
+import io
+import csv
+
+@app.route('/download_csv')
+@login_required
+def download_csv():
+    if current_user.role != 'admin':
+        return redirect(url_for('index'))
+
+    participants = Participant.query.all()
+
+    output = io.StringIO()
+    output.write('\ufeff')  # UTF-8 BOM を追加
+    writer = csv.writer(output)
+    writer.writerow(['名前', 'メール', '質問', '役職', 'ステータス'])
+
+    for p in participants:
+        writer.writerow([p.name, p.email, p.questions, p.position, p.status])
+
+    output.seek(0)
+    return Response(output, mimetype='text/csv',
+                    headers={"Content-Disposition": "attachment;filename=participants.csv"})
