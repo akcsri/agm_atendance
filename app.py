@@ -11,6 +11,12 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # DBとLoginManagerの初期化
 db.init_app(app)
+
+# Create tables on app startup (works in production with gunicorn)
+with app.app_context():
+    db.create_all()
+    print("✅ Database tables created/verified")
+
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
