@@ -75,7 +75,7 @@ def send_notification_email(subject, body):
     
     try:
         msg = Message(
-            subject=f"[LPAC Attendance] {subject}",
+            subject=f"[AGM Attendance] {subject}",
             recipients=[app.config['NOTIFICATION_EMAIL']],
             body=body
         )

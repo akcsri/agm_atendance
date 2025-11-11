@@ -1,4 +1,33 @@
-ユーザー名,役職,名前,メール,質問,ステータス
-user1,部長,山田太郎,yamada@example.com,特になし,出席（対面）
-user2,課長,佐藤花子,sato@example.com,駐車場について,出席（オンライン）
-user3,係長,鈴木一郎,suzuki@example.com,,欠席
+﻿ユーザー名,役職,名前,メール,質問,ステータス
+aic,代表取締役,佐村礼二郎,samura@aicapital.co.jp,,出席（対面）
+aic,バイスプレジデント,益田知樹,masuda@aicapital.co.jp,,出席（対面）
+aic,ディレクター,黒島慶太,kuroshima@aicapital.co.jp,,出席（対面）
+hamagin,リーダー,前田　陽佑,yousuke_maeda@hamagin.co.jp,,出席（対面）
+hamagin,アシスタントリーダー,手塚　昂嗣,takatsugu_tezuka@hamagin.co.jp,,出席（対面）
+ngtg,代表取締役,新居英一,e-arai470@ngt-g.com,,出席（対面）
+ngtg,取締役,堀江藍子,a-horie121@ngt-g.com,,出席（対面）
+hamagin,副グループ長,清水　桂 ,kei_shimizu@hamagin.co.jp,"ソリューション営業部
+レセプションのみ参加",出席（対面）
+hamagin,リーダー,田中　慶太,keita_tanaka@hamagin.co.jp,"ソリューション営業部
+レセプションのみ参加",出席（対面）
+czif,Senior Associate,Sarah Wang,swang@chanzuckerberg.com,,出席（対面）
+sojitz,常務執行役員　ビジネスイノベーション推進担当本部長 兼 経済安全保障担当,中尾泰久,nakao.yasuhisa@sojitz.com,,出席（対面）
+sojitz,ビジネスイノベーション推進室　室長,門野武史,monno.takeshi@sojitz.com,,出席（対面）
+sojitz,ビジネスイノベーション推進室　市場開発推進課　課長,落合健裕,ochiai.takehiro@sojitz.com,,出席（対面）
+hhgl,Mr,Shan CHANDE,sqchande@prospectadv.com,,出席（対面）
+asiaalt,Investment Associate,Kenta Niimi,kniimi@asiaalt.com,,出席（対面）
+asiaalt,Investment Analyst,Kenji Murakami,kmurakami@asiaalt.com,,出席（オンライン）
+aichi,代表取締役社長,足立佳寿子,kazuko.adachi@aichi-fukkou.com,,欠席
+aichi,財務部長,水野義久,yoshihisa.mizuno@aichi-fukkou.com,,欠席
+aichi,事業本部長,中北裕佳子,yukako.nakakita@aichi-fukkou.com,,欠席
+redfarm,n.a.,Yukihiro Nomura,yukihiro.nomura@outlook.com,,出席（オンライン）
+emp1,エグゼクティブディレクター,大平　愛子,Aiko.ohira@mcp-am.com,,出席（対面）
+emp1,マネージングディレクター,小林　和成,Kazushige.kobayashi@mcp-am.com,,出席（対面）
+revamp,取締役 執行役員,千田勇一,chida@revamp.co.jp,,出席（オンライン）
+revamp,プリンシパル,吉村琢,yoshimura.taku@revamp.co.jp,,出席（オンライン）
+hamagin,副グループ長,香西　健史,kenji_kohzai@hamagin.co.jp,,出席（対面）
+kiraboshi,次長,岡﨑晃士,akihito-okazaki@kiraboshibank.co.jp,,出席（対面）
+kiraboshi,室長,谷島知英,tomoe.yajima@kiraboshibank.co.jp,,出席（対面）
+chugin,調査役,淺原　俊宏,asahara_toshihiro_a@chugin.co.jp,,出席（対面）
+chugin,主任,野田　涼威,noda_ryoui@chugin.co.jp,,出席（対面）
+mastertrust,課長,山本　直樹,yamam-na@st.ritsumei.ac.jp,,出席（対面）

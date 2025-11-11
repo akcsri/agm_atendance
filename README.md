@@ -1,4 +1,4 @@
-# LPAC Attendance System
+# AGM Attendance System
 
 FY2025 LPAC（Limited Partners Advisory Committee）会議の出席管理システム
 
